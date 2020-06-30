@@ -105,12 +105,12 @@ export default function MainChat(props) {
       </form>
       </div>
       </div>
-      );
-    }
+  );
+}
     
-    function Message(props) {
-      const className = 'messageContainer' + (props.yourName === props.username ? ' self' : '');
-      return (
+function Message(props) {
+  const className = 'messageContainer' + (props.yourName === props.username ? ' self' : '');
+  return (
     <div className={className}>
       <img src={props.userURL} />
       <div className='textContainer'>
@@ -118,5 +118,5 @@ export default function MainChat(props) {
         <p>{props.message}</p>
       </div>
     </div>
-  );
+);
 }
