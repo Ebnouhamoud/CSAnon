@@ -24,7 +24,7 @@ githubController.redirect = (req, res, next) => {
 githubController.callback = (req, res, next) => {
   // github returns a code in a query param
   const { code } = req.query;
-  console.log("code", code);
+  // console.log("code", code);
   if (!code) {
     return next({
       error: { code: 403, message: "User Not Authorized By Github" },
@@ -40,8 +40,8 @@ githubController.callback = (req, res, next) => {
         return next();
       })
       .catch((err) => {
-        console.log(err.status);
-        console.log(err.message);
+        // console.log(err.status);
+        // console.log(err.message);
         return next(err);
       })
   );
@@ -53,7 +53,7 @@ githubController.approveUser = async (req, res, next) => {
     .then((response) => {
       // should give 204 status in response
       // if yes - good to go, allowed to access chat (member of the organization)
-      console.log(response.status);
+      // console.log(response.status);
       if (response.status === 204) {
         res.locals.user = githubHandle;
         return next();
@@ -102,7 +102,7 @@ githubController.createJWT = async (req, res, next) => {
 githubController.setCookie = (req, res, next) => {
   const token = res.locals.token;
   res.cookie("token", token);
-  console.log('set cookie is running')
+  // console.log('set cookie is running')
   next();
 };
 

@@ -10,7 +10,7 @@ module.exports = (http) => {
   let userList = []
 
   io.on('connect', (socket) => {
-    console.log('a user connected');
+    // console.log('a user connected');
 
 
     socket.on('message', async ({ message, username }) => {
@@ -32,7 +32,7 @@ module.exports = (http) => {
 
     socket.on('signin', ({ username }) => {
       userCount++
-      console.log(userCount)
+      // console.log(userCount)
       io.emit('count', userCount)
 
       userList.push(username)
@@ -45,11 +45,11 @@ module.exports = (http) => {
       redis.set(username, 'true');
 
       redis.get(username, (data) => {
-        console.log(data)
+        // console.log(data)
       })
 
       redis.keys('*', (err, data) => {
-        console.log(data.length, data)
+        // console.log(data.length, data)
         socket.emit('data', data)
       })
 
@@ -62,8 +62,8 @@ module.exports = (http) => {
       // retrieves the username attached to the socketID on disconnect
       redis.get(socket.id.toString(), (err, username) => {
         if (err) return console.error(err);
-        console.log(username,'testing')
-        console.log(username, 'disconnected');
+        // console.log(username,'testing')
+        // console.log(username, 'disconnected');
        
         if (!username) return;
         //frees the username and socketID from the in-use storage
@@ -79,9 +79,9 @@ module.exports = (http) => {
           return user !== username
         })
         redis.keys('*', (err, data) => {
-          console.log(data.length, data)
+          // console.log(data.length, data)
         })
-        console.log(userList)
+        // console.log(userList)
         io.emit('userlist', userList)
       });
     });
